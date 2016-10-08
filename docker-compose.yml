@@ -1,0 +1,25 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_DB=caravel
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=caravel_db
+    ports:
+      - 5435:5432
+  app:
+    build: .
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:mysecretpassword@db/caravel_db
+    depends_on:
+      - db
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 8089:8088
+    links:
+      - db:db
+
+
+
