@@ -13,4 +13,5 @@ caravel init
 #caravel load_examples
 
 # Start the web server on port 8088
-caravel runserver -p 8088
+caravel runserver -p 8088 -d
+
