@@ -8,21 +8,16 @@ This is a Dockefile to build https://github.com/airbnb/caravel.
 # Customization of how the container runs.
 
 ###### Environments used to customize  admin account creation
-
-
-   Variable        Required          Default               Description
    
-1. username        No                admin              This creates caravel username if not 
-                                                        defined it creates admin by default
+1. username  This creates caravel username if not defined it creates admin by default
               
-2. password        No                admin              Defines super user password if not
-                                                        defined it uses admin be default
+2. password  Defines super user password if not defined it uses admin be default
                                                         
-3. firstname      No                admin               First name of the admin account
+3. firstname First name of the admin account, default is admin
 
-4. lastname       No                admin               Last name of the admin account
+4. lastname  Last name of the admin account, default is admin
 
-5. email          No                admin@example.com   email to use for admin account.
+5. email     Email to use for admin account, default is admin@example.com 
 
 ###### Environments used for database creation
 
