@@ -60,7 +60,7 @@ This is a Dockefile to build https://github.com/airbnb/caravel.
                     - db:db
 
 
-Using version 2
+Using version 1
 
         caravel:
           environment:
