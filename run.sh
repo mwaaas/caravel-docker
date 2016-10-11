@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Create an admin user
-fabmanager create-admin --app caravel --username admin --firstname admin --lastname admin --password admin --email admin@example.com
+fabmanager create-admin --app caravel --username ${username:=admin} --firstname ${firstname:=admin} --lastname ${lastname:=admin} --password ${password:=admin} --email ${email:=admin@example.com}
 
 # Initialize the database
 caravel db upgrade
