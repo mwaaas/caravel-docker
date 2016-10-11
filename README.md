@@ -1,3 +1,78 @@
 This is a Dockefile to build https://github.com/airbnb/caravel.
 
-Currently it builds it per the quickstart demo instructions.
+# To get started
+- run this command 
+        docker -it run mwaaas/caravel-docker -p 80:80 
+- check this url http://localhost
+
+# Customization of how the container runs.
+
+###### Environments used to customize  admin account creation
+
+
+   Variable        Required          Default               Description
+   
+1. username        No                admin              This creates caravel username if not 
+                                                        defined it creates admin by default
+              
+2. password        No                admin              Defines super user password if not
+                                                        defined it uses admin be default
+                                                        
+3. firstname      No                admin               First name of the admin account
+
+4. lastname       No                admin               Last name of the admin account
+
+5. email          No                admin@example.com   email to use for admin account.
+
+###### Environments used for database creation
+
+  Variable                      Required          Default                                       Description
+
+1. SQLALCHEMY_DATABASE_URI      No                sqlite:////usr/src/app/caravel.db             Database for caravel to use
+
+
+###### LOADING EXAMPLE DATA
+    docker exec {container_id}  caravel load_examples
+    
+###### Creating admin account 
+        fabmanager create-admin --app caravel 
+        
+###### Using docker compose version 2
+        version: '2'
+        services:
+            db:
+                image: postgres:9.5
+                environment:
+                    - POSTGRES_DB=caravel
+                    - POSTGRES_PASSWORD=mysecretpassword
+                    - POSTGRES_DB=caravel_db
+                ports:
+                    - 5435:5432
+            app:
+                image: mwaaas/caravel-docker:latest
+                environment:
+                    - SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:mysecretpassword@db/caravel_db
+                depends_on:
+                    - db
+                ports:
+                    - 80:80
+                links:
+                    - db:db
+
+
+Using version 2
+
+        caravel:
+          environment:
+            - 'SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@db/postgres'
+          image: 'mwaaas/caravel-docker:latest'
+          links:
+            - 'caravel-db:db'
+            - 'database.tumacredo-prod:tumacredo-db-prod'
+          ports:
+            - '8089:8088'
+        caravel-db:
+          image: 'postgres:9.5'
+          ports:
+            - '5435:5432'
+
