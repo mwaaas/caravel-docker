@@ -1,13 +1,13 @@
 This is a Dockefile to build https://github.com/airbnb/caravel.
 
-# To get started
+# _`To get started`_
 - run this command 
         docker -it run mwaaas/caravel-docker -p 80:80 
 - check this url http://localhost
 
-# Customization of how the container runs.
+##_`Customization of how the container runs.`_
 
-###### Environments used to customize  admin account creation
+_`Environments used to customize  admin account creation`_
    
 1. username  This creates caravel username if not defined it creates admin by default
               
@@ -19,7 +19,7 @@ This is a Dockefile to build https://github.com/airbnb/caravel.
 
 5. email     Email to use for admin account, default is admin@example.com 
 
-###### Environments used for database creation
+_`Environments used for database creation`_
 
   Variable                      Required          Default                                       Description
 
